@@ -54,6 +54,7 @@ pipeline {
       steps {
         // start local server in the background
         // we will shut it down in "post" command block
+        sh 'export PORT=8090'
         echo 'Starting local server on port: ${env.PORT}'
         sh 'nohup npm run start:ci &'
       }
