@@ -54,6 +54,7 @@ pipeline {
       steps {
         // start local server in the background
         // we will shut it down in "post" command block
+        echo 'Starting local server on port: ${env.PORT}'
         sh 'nohup npm run start:ci &'
       }
     }
@@ -67,6 +68,7 @@ pipeline {
         // we can load the record key variable from credentials store
         // see https://jenkins.io/doc/book/using/using-credentials/
         //CYPRESS_RECORD_KEY = credentials('cypress-example-kitchensink-record-key')
+        PORT = '8090';
         CYPRESS_RECORD_KEY = '5d20c514-e724-4a48-a818-fece4b0be6b7';
         // because parallel steps share the workspace they might race to delete
         // screenshots and videos folders. Tell Cypress not to delete these folders
